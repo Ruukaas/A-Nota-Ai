@@ -4,13 +4,24 @@
  */
 package com.example.ANotaAi.model;
 
+import java.io.Serializable;
 import java.util.List;
+import javax.persistence.CascadeType;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.OneToMany;
 
 /**
  *
  * @author euluc
  */
-public class Usuario {
+
+@Entity
+public class Usuario implements Serializable {
+    @Id
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private int codigo;
     private String nome;
     private String usuario;
@@ -19,6 +30,8 @@ public class Usuario {
     private String senha;
     private String telefone;
     private String cpf;
+    
+    @OneToMany(cascade = CascadeType.ALL, mappedBy="donoDaNota")
     private List<NotaFiscal> compras;
 
     public int getCodigo() {

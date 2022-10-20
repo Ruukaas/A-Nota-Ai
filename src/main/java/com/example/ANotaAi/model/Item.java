@@ -4,16 +4,41 @@
  */
 package com.example.ANotaAi.model;
 
+import java.io.Serializable;
+import javax.persistence.CascadeType;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
+
 /**
  *
  * @author euluc
  */
-public class Item {
+
+@Entity
+public class Item implements Serializable {
+    
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int codigo;
+    
+    @ManyToOne
     private Produto produto;
     private int quantidade;
+    
+    @OneToOne
     private Preço valorUnitario;
+    
+    @ManyToOne
     private Loja localDeVenda;
+    
+    @ManyToOne
+    private NotaFiscal notaFiscal;
+
 
     public int getCodigo() {
         return codigo;
@@ -53,6 +78,14 @@ public class Item {
 
     public void setLocalDeVenda(Loja localDeVenda) {
         this.localDeVenda = localDeVenda;
+    }
+    
+    public NotaFiscal getNotaFiscal() {
+        return notaFiscal;
+    }
+
+    public void setNotaFiscal(NotaFiscal notaFiscal) {
+        this.notaFiscal = notaFiscal;
     }
     
 }

@@ -4,22 +4,47 @@
  */
 package com.example.ANotaAi.model;
 
+import java.io.Serializable;
 import java.time.LocalDateTime;
 import java.util.List;
+import javax.persistence.CascadeType;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 /**
  *
  * @author euluc
  */
-public class NotaFiscal {
+
+@Entity
+public class NotaFiscal implements Serializable {
+    
+    @Id
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private int codigo;
+    
+    @ManyToOne
+//    @JoinColumn
     private Usuario donoDaNota;
+    
+    @ManyToOne
     private Loja loja;
+    @OneToMany(cascade = CascadeType.ALL,mappedBy = "notaFiscal")
     private List<Item> itens;
     private String chaveDeAcesso;
+    
+    @Temporal(TemporalType.TIMESTAMP)
     private LocalDateTime dataEmissao;
+    
     private double valor;
-
+    
     public int getCodigo() {
         return codigo;
     }
