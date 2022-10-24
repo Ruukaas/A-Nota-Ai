@@ -40,7 +40,6 @@ public class NotaFiscal implements Serializable {
     private List<Item> itens;
     private String chaveDeAcesso;
     
-    @Temporal(TemporalType.TIMESTAMP)
     private LocalDateTime dataEmissao;
     
     private double valor;

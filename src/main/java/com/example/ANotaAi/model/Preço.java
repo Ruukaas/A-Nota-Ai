@@ -26,7 +26,7 @@ public class Preço implements Serializable {
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private int codigo;
     private double valor;
-    @Temporal(TemporalType.TIMESTAMP)
+
     private LocalDateTime dataDeRegistro;
 
     @OneToOne(mappedBy = "valorUnitario")
